@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>User Management</title>
+
+    <!-- Style sheets -->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+
+    <!-- Library Scripts -->
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+
+    <!-- Application Script -->
+    <script src="app/app.js"></script>
+
+    <!-- Product Controllers -->
+    <script src="app/users/userListCtrl.js"></script>
+
+        <!-- Services -->
+        <script src="common/services/common.services.js"></script>
+        <script src="common/services/userResource.js"></script>
+</head>
+
+<body ng-app="userManagement">
+<div class="panel panel-primary">
+    <div class="panel-heading"
+         style="font-size:large">User List 
+    </div>
+
+    <div class="panel-body">
+        <table class="table" ng-controller="UserListCtrl as vm">
+
+            <thead>
+            <tr>
+                <!-- <td>
+                    <button type="button"
+                            class="btn btn-primary"
+                            ng-click="vm.toggleImage()">
+                        {{vm.showImage ? "Hide" : "Show"}} Image
+                    </button>
+                </td> -->
+                <td>Name</td>
+                <td>User Name</td>
+                <td>Email</td>
+                <td>Address</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in vm.users">
+                <!-- <td>
+                    <img ng-if="vm.showImage"
+                         ng-src="{{product.imageUrl}}"
+                         style="width:50px;margin:2px"
+                         title="{{product.productName}}">
+                </td> -->
+
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.address.street }}, {{ user.address.suite }}, {{ user.address.city }} {{ user.address.zipcode }} </br>
+                    GPS Coordiates: {{ user.address.geo.lat }} {{ user.address.geo.lng }}</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>
