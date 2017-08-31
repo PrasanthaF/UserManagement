@@ -1,25 +1,28 @@
 
 var gulp = require('gulp');
-var jscs = require('gulp-jscs');
-var jshint = require('gulp-jshint');
-var util = require('gulp-util');
-var gulpprint = require('gulp-print');
-var gulpif = require('gulp-if');
-var args = require('yargs');
+var args = require('yargs').argv;
+var $ = require('gulp-load-plugins')({lazy: true});
+var config = require('./gulp.config')();
 
-gulp.task('AnalyzeCode', function () {
+gulp.task('validate', function () {
     log('Analyzing source with JSHint and JSCS');
 
     return gulp
-        .src([
-            './app/**/*.js',
-            './*.js'
-        ])
-        .pipe(gulpif(args.verbose, gulpprint()))
-        .pipe(jscs())
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
-        .pipe(jshint.reporter('fail'));        
+        .src(config.allJsfiles)
+        .pipe($.if(args.verbose, $.print()))
+        .pipe($.jscs())
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
+        .pipe($.jshint.reporter('fail'));        
+});
+
+gulp.task('styles', function () {
+    log('Compliling less to CSS');
+
+    return gulp
+        .src(config.less)
+        .pipe($.less())
+        .pipe(gulp.dest(config.temp));         
 });
 
 
@@ -27,11 +30,11 @@ function log(msg){
     if(typeof(msg)=== 'object') {
         for (var item in msg) {
             if(msg.hasOwnProperty(item)){
-                util.log(util.colors.blue(msg[item]));
+                $.util.log($.util.colors.green(msg[item]));
             }
         }
     } else{
-        util.log(util.colors.blue(msg));
+        $.util.log($.util.colors.green(msg));
     }
 
 }
