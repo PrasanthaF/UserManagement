@@ -1,5 +1,5 @@
 
 (function () {
-    "use strict";
-    var app = angular.module("userManagement", ["common.services"]);
+    'use strict';
+    var app = angular.module('userManagement', ['common.services']);
 }());
