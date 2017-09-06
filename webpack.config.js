@@ -5,6 +5,20 @@ module.exports = {
     output: {
         filename: "./bundle.js"
     },
-    watch :true
-}
+    watch :true,
+
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "jshint-loader",
+                enforce: 'pre'
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['.js','.es6']
+    }
+};
 

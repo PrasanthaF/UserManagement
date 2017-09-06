@@ -9,10 +9,13 @@
   },
   "devDependencies": {
     "jshint": "^2.9.5",
-    "jshint-stylish": "^2.2.1"
+    "jshint-loader": "^0.8.4",
+    "jshint-stylish": "^2.2.1",
+    "node-libs-browser": "^2.0.0",
+    "webpack": "^3.5.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
