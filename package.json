@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "angular": "^1.6.6",
+    "bootstrap": "^3.3.7"
   },
   "devDependencies": {
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1"
-
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

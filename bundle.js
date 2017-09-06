@@ -65,6 +65,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 
@@ -73,7 +81,32 @@
     var app = angular.module('userManagement', ['common.services']);
 }());
 
-//test
+//testss
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+(function () {
+    'use strict';
+    angular
+        .module("userManagement")
+        .controller("UserListCtrl", ["userResource", UserListCtrl]);
+
+    function UserListCtrl(userResource) {
+        var vm = this;
+
+        userResource.query(function(data){
+            vm.users = data;
+        });
+
+        vm.showImage = false;
+
+        vm.toggleImage = function () {
+            vm.showImage = !vm.showImage;
+        };
+    }
+}());
 
 
 /***/ })
